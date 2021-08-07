@@ -144,6 +144,9 @@ Once a template has been applied, and created by the argo workflows controller i
 
 <div style="text-align:center"><img align="center" alt="pipeline graph"  src="./assets/argo-workflow-templates.png"></div>
 
+### Future Work
+
+In the future I intend on adding Argo-Events for which listens for webhook calls and triggers our CI/CD workflows automatically
 #### References
 - https://argoproj.github.io/argo-workflows/
 - https://argoproj.github.io/argo-cd/
