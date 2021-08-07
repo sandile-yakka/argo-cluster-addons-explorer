@@ -1,0 +1,5 @@
+namespace: argo-events
+spec:
+  destination:
+    namespace: argo-events
+    server: https://kubernetes.default.svc

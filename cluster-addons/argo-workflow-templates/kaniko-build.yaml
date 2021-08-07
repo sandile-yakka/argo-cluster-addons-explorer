@@ -1,0 +1,84 @@
+apiVersion: argoproj.io/v1alpha1
+kind: WorkflowTemplate
+metadata:
+  name: overlord-dev-pipeline
+  namespace: argo-events
+spec:
+  templates:
+  - name: build-dag
+    dag:
+      tasks:
+      - name: build
+        template: kaniko-build
+      - name: deploy-to-dev
+        template: deploy-to-dev
+        dependencies:
+          - build
+  - name: kaniko-build
+    inputs:
+      parameters:
+      - name: dockerfile_path
+        value: './dockerfile'
+      - name: branch
+        value: master # default branch
+      - name: repo_url # source code repo
+        value: github.com/InstaFinders/overlord.git
+      - name: registry_url # ECR regisitry were the built image will be pushed
+        value:  <Your ECR Repo Here>
+    serviceAccount: argo-workflow-executor-sa 
+    serviceAccountName: argo-workflow-executor-sa
+    container:
+      image: gcr.io/kaniko-project/executor:latest
+      args: ["--dockerfile={{inputs.parameters.dockerfile_path}}",
+             "--context=git://{{inputs.parameters.repo_url}}",
+             "--destination={{inputs.parameters.registry_url}}:{{inputs.parameters.branch}}",
+             "--git=branch={{inputs.parameters.branch}}"
+             ]
+      env:
+      - name: GIT_TOKEN
+        valueFrom:
+          secretKeyRef:
+            name: github-creds
+            key: auth_token
+      volumeMounts:
+      - name: kaniko-secret
+        mountPath: /kaniko/.docker 
+    volumes:
+    - name: kaniko-secret
+      secret:
+        secretName: ecr-docker-login
+        items:
+          - key: .dockerconfigjson
+            path: config.json
+  - name: deploy-to-dev
+    inputs:
+      parameters:
+      - name: argo_repo_url
+        value: github.com/sandile-yakka/argo-cluster-addons.git # default branch
+      - name: branch
+        value: master # default branch
+    script: 
+      command: ['sh']
+      source: |
+        wget https://github.com/mikefarah/yq/releases/download/2.4.1/yq_linux_amd64 -O /usr/bin/yq;
+        git clone -b {{inputs.parameters.branch}} https://$(cat /.github/auth_token)@{{inputs.parameters.argo_repo_url}}; 
+        chmod +x /usr/bin/yq
+        cd .//argo-cluster-addons
+        ls /.github
+        /usr/bin/yq w -i ./dev/overlord-api/values.yaml image.tag {{inputs.parameters.branch}}; 
+        git config user.email "$(cat /.github/email)"
+        git config user.name "$(cat /.github/name)"
+        git commit -m "Updates helm chart for overlord for branch {{inputs.parameters.branch}}" --all; 
+        git push;
+      image: alpine/git:v2.30.2
+      volumeMounts:
+      - name: creds
+        mountPath: /.github/
+    volumes:
+    - name: creds
+      secret:
+        secretName: github-creds
+    serviceAccount: argo-workflow-executor-sa
+    serviceAccountName: argo-workflow-executor-sa
+  
+

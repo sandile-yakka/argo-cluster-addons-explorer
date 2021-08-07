@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argo-workflows-templates
+  namespace: argo-cd
+spec:
+  project: cluster-addons
+  syncPolicy:
+    automated: {}
+  destination:
+    namespace: {{ .Values.spec.destination.namespace }}
+    server: {{ .Values.spec.destination.server }}
+  source:
+    path: cluster-addons/argo-workflow-templates/
+    repoURL: https://github.com/sandile-yakka/argo-cluster-addons
+    targetRevision: master

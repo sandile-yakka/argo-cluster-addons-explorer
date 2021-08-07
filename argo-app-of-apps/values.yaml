@@ -1,5 +1,0 @@
-namespace: argo-cd
-spec:
-  destination:
-    namespace: argo-cd
-    server: https://kubernetes.default.svc

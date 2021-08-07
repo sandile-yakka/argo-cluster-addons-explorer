@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: services-app-of-apps-dev
+  namespace: argo-cd
+spec:
+  syncPolicy:
+    automated: {}
+  destination:
+    namespace: argo-cd
+    server: https://kubernetes.default.svc
+  project: dev-services
+  source:
+    path: dev-app-of-apps
+    repoURL: https://github.com/sandile-yakka/argo-cluster-addons
+    targetRevision: master

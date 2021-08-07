@@ -1,0 +1,33 @@
+replicaCount: 1
+image:
+  repository: <Your ECR Repo Here>
+  pullPolicy: IfNotPresent
+  tag: master
+imagePullSecrets:
+- name: ecr-docker-login
+nameOverride: ""
+fullnameOverride: ""
+serviceAccount:
+  create: true
+  annotations: {}
+  name: ""
+podAnnotations: {}
+podSecurityContext: {}
+securityContext: {}
+service:
+  type: ClusterIP
+  port: 80
+ingress:
+  enabled: false
+  annotations:
+    kubernetes.io/ingress.class: traefik
+  hosts:
+  - host: overlord.shongs.com
+    paths:
+      path: null
+  tls: []
+resources: {}
+autoscaling: {}
+nodeSelector: {}
+tolerations: []
+affinity: {}
