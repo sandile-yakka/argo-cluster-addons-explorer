@@ -146,7 +146,7 @@ Once a template has been applied, and created by the argo workflows controller i
 
 ### Future Work
 
-In the future I intend on adding Argo-Events for which listens for webhook calls and triggers our CI/CD workflows automatically
+In the future I intend on adding Argo-Events which listens for webhook calls and triggers our CI/CD workflows automatically
 #### References
 - https://argoproj.github.io/argo-workflows/
 - https://argoproj.github.io/argo-cd/
