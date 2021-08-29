@@ -23,7 +23,7 @@ Likewise in the words of the Argo team:
 <hr/>
 Before installing ArgoCD run the init-ns.sh script to setup all the necessary namespaces.
 
-``chmod +x ./init-sh.sh  && ./init-ns.sh``
+``chmod +x ./init-ns.sh  && ./init-ns.sh``
 
 Now that we'  ve created the required namespaces, let's setup ArgoCD, this can be accomplished by using helm chart found [here](https://github.com/argoproj/argo-helm/tree/master/charts/argo-cd#synchronizing-changes-from-original-repository).
 
