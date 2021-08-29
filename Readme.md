@@ -23,13 +23,15 @@ Likewise in the words of the Argo team:
 <hr/>
 Before installing ArgoCD run the init-ns.sh script to setup all the necessary namespaces.
 
-``chmod +x ./init-ns.sh  && ./init-ns.sh``
+``chmod +x ./scripts/init-ns.sh  && ./scripts/init-ns.sh``
 
-Now that we'  ve created the required namespaces, let's setup ArgoCD, this can be accomplished by using helm chart found [here](https://github.com/argoproj/argo-helm/tree/master/charts/argo-cd#synchronizing-changes-from-original-repository).
+Now that we've created the required namespaces, let's setup ArgoCD.
 
-Make sure that your ArgoCD setup is working, you'll find testing instructions in the helm chart itself. Let's now setup the two ArgoCD Projects to separate deployments for cluster addons and normal service workloards. We'll call these *cluster-addons* and *dev-services*. 
+``chmod +x ./scripts/argo-cd-install.sh && ./scripts/argo-cd-install.sh``
 
-  ``  chmod +x ./init-argocd-project-sh &&  ./init-argocd-project.sh``
+Make sure that your ArgoCD setup is working, you'll find testing instructions in your terminal upon installation. Let's now setup the two ArgoCD Projects to separate deployments for cluster addons and normal service workloards. We'll call these *cluster-addons* and *dev-services*. 
+
+  ``chmod +x ./scripts/init-argocd-project-sh &&  ./scritps/init-argocd-project.sh``
 
 This script will create the two projects we require, later these two projects will be managed by ArgoCD, so as to ensure that no one can mistakenly delete our applications. 
 If the above command is successful go to your argo server UI and under the projects tab you should see something like the image below.
