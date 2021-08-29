@@ -17,4 +17,3 @@ spec:
     path: dev/overlord-api
     repoURL: https://github.com/sandile-yakka/argo-cluster-addons
     targetRevision: master
-  sourceType: Helm

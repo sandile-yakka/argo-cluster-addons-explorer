@@ -49,7 +49,7 @@ You can connect ArgoCD to a repo by navigating to navigate to *Settings/Reposito
 So far so good! Let us now run the [app-of-apps](https://argoproj.github.io/argo-cd/operator-manual/cluster-bootstrapping/) init script:
 
 ```
-chmod +x ./init-argo-app-of-apps.sh
+chmod +x ./scripts/init-argo-app-of-apps.sh && ./scripts/init-argo-app-of-apps.sh
 ```
 
 This script is going to apply two ArgoProj Custom Resource Definitions (CRDs) of kind Application. These are:
