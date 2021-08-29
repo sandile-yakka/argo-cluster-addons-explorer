@@ -31,7 +31,7 @@ Now that we've created the required namespaces, let's setup ArgoCD.
 
 Make sure that your ArgoCD setup is working, you'll find testing instructions in your terminal upon installation. Let's now setup the two ArgoCD Projects to separate deployments for cluster addons and normal service workloards. We'll call these *cluster-addons* and *dev-services*. 
 
-  ``chmod +x ./scripts/init-argocd-project-sh &&  ./scritps/init-argocd-project.sh``
+  ``chmod +x ./scripts/init-argocd-project.sh && ./scripts/init-argocd-project.sh``
 
 This script will create the two projects we require, later these two projects will be managed by ArgoCD, so as to ensure that no one can mistakenly delete our applications. 
 If the above command is successful go to your argo server UI and under the projects tab you should see something like the image below.
