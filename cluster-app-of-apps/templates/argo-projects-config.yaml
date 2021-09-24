@@ -13,6 +13,6 @@ spec:
     server: {{ .Values.spec.apps.argoProjectConfig.destination.server }}
   source:
     path: config/argo-cd-config/
-    repoURL: https://github.com/sandile-yakka/argo-cluster-addons
+    repoURL: https://github.com/sandile-yakka/argo-cluster-addons-explorer
     targetRevision: master
 {{ end }}
