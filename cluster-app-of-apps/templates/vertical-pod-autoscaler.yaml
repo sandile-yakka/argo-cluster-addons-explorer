@@ -1,3 +1,4 @@
+{{ if .Values.spec.apps.verticalPodAutoscaler.enabled }}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -17,3 +18,4 @@ spec:
     path: cluster-addons/vertical-pod-autoscaler
     repoURL: https://github.com/sandile-yakka/argo-cluster-addons-explorer
     targetRevision: master
+{{ end }}

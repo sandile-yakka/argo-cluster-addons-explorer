@@ -1,3 +1,4 @@
+{{ if .Values.spec.apps.ecrCredRenew.enabled }}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -14,3 +15,4 @@ spec:
     path: cluster-addons/ecr-renew
     repoURL: https://github.com/sandile-yakka/argo-cluster-addons
     targetRevision: master
+{{ end }}
