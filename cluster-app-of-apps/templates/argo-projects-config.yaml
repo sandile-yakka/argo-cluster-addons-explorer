@@ -1,3 +1,4 @@
+{{ if .Values.spec.apps.argoProjectConfig.enabled }}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -8,9 +9,10 @@ spec:
   syncPolicy:
     automated: {}
   destination:
-    namespace: {{ .Values.spec.destination.namespace }}
-    server: {{ .Values.spec.destination.server }}
+    namespace: {{ .Values.spec.apps.ecrCredRenew.destination.namespace }}
+    server: {{ .Values.spec.apps.ecrCredRenew.destination.server }}
   source:
     path: config/argo-cd-config/
     repoURL: https://github.com/sandile-yakka/argo-cluster-addons
     targetRevision: master
+{{ end }}

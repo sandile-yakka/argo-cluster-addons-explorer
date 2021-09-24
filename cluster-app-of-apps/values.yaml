@@ -1,5 +1,19 @@
 namespace: argo-events
 spec:
-  destination:
-    namespace: argo-events
-    server: https://kubernetes.default.svc
+  apps:
+    verticalPodAutoscaler:
+      enabled: true
+      destination:
+        namespace: kube-system
+        server: https://kubernetes.default.svc
+    ecrCredRenew:
+      enabled: false
+      destination:
+        namespace: argo-events
+        server: https://kubernetes.default.svc
+    argoProjectConfig:
+      enabled: false
+      destination:
+        namespace: argo-events
+        server: https://kubernetes.default.svc
+

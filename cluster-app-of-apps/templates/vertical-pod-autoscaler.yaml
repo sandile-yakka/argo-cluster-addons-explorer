@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: vertical-pod-autoscaler
+  namespace: argo-cd
+  annotations:
+    argocd.argoproj.io/sync-wave: "1" # the lower value the higher the sync priority 
+spec:
+  project: cluster-addons
+  syncPolicy:
+    automated: 
+      selfHeal: true # retries sync after self-heal timeout
+  destination:
+    namespace: {{ .Values.spec.apps.verticalPodAutoscaler.destination.namespace }}
+    server: {{ .Values.spec.apps.verticalPodAutoscaler.destination.server }}
+  source:
+    path: cluster-addons/vertical-pod-autoscaler
+    repoURL: https://github.com/sandile-yakka/argo-cluster-addons-explorer
+    targetRevision: master
