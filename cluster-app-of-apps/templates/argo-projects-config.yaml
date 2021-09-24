@@ -9,8 +9,8 @@ spec:
   syncPolicy:
     automated: {}
   destination:
-    namespace: {{ .Values.spec.apps.ecrCredRenew.destination.namespace }}
-    server: {{ .Values.spec.apps.ecrCredRenew.destination.server }}
+    namespace: {{ .Values.spec.apps.argoProjectConfig.destination.namespace }}
+    server: {{ .Values.spec.apps.argoProjectConfig.destination.server }}
   source:
     path: config/argo-cd-config/
     repoURL: https://github.com/sandile-yakka/argo-cluster-addons
