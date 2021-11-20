@@ -1,0 +1,43 @@
+replicaCount: 1
+image:
+  repository: quay.io/argoproj/argocd-applicationset
+  pullPolicy: IfNotPresent
+  tag: ""
+args:
+  metricsAddr: :8080
+  probeBindAddr: :8081
+  enableLeaderElection: false
+  namespace: ""
+  argocdRepoServer: argo-cd-argocd-repo-server:8081
+  policy: sync
+  debug: false
+  dryRun: true
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  create: true
+  annotations: {}
+  name: ""
+podAnnotations: {}
+podLabels: {}
+
+rbac:
+  pspEnabled: true
+podSecurityContext: {}
+
+securityContext: {}
+resources: {}
+nodeSelector: {}
+tolerations: []
+affinity: {}
+priorityClassName: ""
+mountSSHKnownHostsVolume: true
+mountTLSCertsVolume: true
+mountGPGKeysVolume: false
+mountGPGKeyringVolume: true
+extraVolumeMounts: []
+extraVolumes: []
+extraArgs: []
+
