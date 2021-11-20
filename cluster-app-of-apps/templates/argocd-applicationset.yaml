@@ -3,8 +3,8 @@ kind: Application
 metadata:
   name: argo-cd-applicationset-controller
   namespace: argo-cd
-  annotations:
-    argocd.argoproj.io/compare-options: IgnoreExtraneous
+  # annotations:
+    # argocd.argoproj.io/compare-options: IgnoreExtraneous 
 spec:
   project: cluster-addons
   syncPolicy:
@@ -13,6 +13,6 @@ spec:
     namespace: {{ .Values.spec.apps.argoProjectConfig.destination.namespace }}
     server: {{ .Values.spec.apps.argoProjectConfig.destination.server }}
   source:
-    path: cluster-addons/argocd-applicatonset
+    path: cluster-addons/argocd-applicationset
     repoURL: https://github.com/sandile-yakka/argo-cluster-addons-explorer
     targetRevision: master
