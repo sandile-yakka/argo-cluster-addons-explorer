@@ -10,7 +10,7 @@ args:
   namespace: ""
   argocdRepoServer: argo-cd-argocd-repo-server:8081
   policy: sync
-  debug: false
+  debug: true
   dryRun: true
 imagePullSecrets: []
 nameOverride: ""
