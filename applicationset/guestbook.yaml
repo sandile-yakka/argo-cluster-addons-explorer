@@ -12,7 +12,7 @@ spec:
     metadata:
       name: '{{cluster}}-guestbook'
     spec:
-      project: dev-services
+      project: default
       source:
         repoURL: https://github.com/argoproj-labs/applicationset.git
         targetRevision: HEAD

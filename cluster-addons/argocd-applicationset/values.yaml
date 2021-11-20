@@ -11,7 +11,7 @@ args:
   argocdRepoServer: argo-cd-argocd-repo-server:8081
   policy: sync
   debug: true
-  dryRun: true
+  dryRun: false
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
