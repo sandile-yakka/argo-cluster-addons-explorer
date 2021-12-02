@@ -11,6 +11,8 @@ spec:
   template:
     metadata:
       name: '{{cluster}}-guestbook'
+      annotations:
+        name: sandile
     spec:
       project: default
       source:
@@ -20,3 +22,4 @@ spec:
       destination:
         server: '{{url}}'
         namespace: guestbook
+      

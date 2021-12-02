@@ -14,5 +14,5 @@ spec:
     server: https://kubernetes.default.svc
   source:
     path: cluster-app-of-apps
-    repoURL: https://github.com/sandile-yakka/argo-cluster-addons-explorer
+    repoURL: https://github.com/sandile-yakka/argo-cluster-addons-exploerer-dup
     targetRevision: master
