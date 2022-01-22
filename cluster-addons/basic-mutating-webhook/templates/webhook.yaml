@@ -1,0 +1,24 @@
+apiVersion: admissionregistration.k8s.io/v1
+kind: MutatingWebhookConfiguration
+metadata: 
+  name: {{ .Release.Name }}
+webhooks:
+- name: {{ .Release.Name }}.default.svc.cluster.local
+  admissionReviewVersions:
+  - "v1beta1"
+  sideEffects: "None"
+  timeoutSeconds: 30 # how long the mutating service has
+  objectSelector:
+    matchLabels:
+      basic-mutating-webhook-enable: "true"
+  clientConfig:
+    service:
+      name: {{ .Release.Name }}
+      namespace: default
+      path: "/addMemoryRequests"
+    caBundle: "${CA_PEM_B64}"
+  rules:
+  - operations: ["CREATE"]
+    apiGroups: [""]
+    apiVersions: ["v1"]
+    resources: ["pods"]
