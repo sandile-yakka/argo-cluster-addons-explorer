@@ -5,10 +5,10 @@
 replicaCount: 1
 
 image:
-  repository: sandile11/mutating-webhook
+  repository: sandile11/basic-mutating-webhook
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v1.0.1"
+  tag: "v2.0.1"
 
 imagePullSecrets: []
 nameOverride: ""

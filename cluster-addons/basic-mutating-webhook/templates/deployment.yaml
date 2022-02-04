@@ -37,22 +37,23 @@ spec:
           - name: USE_KUBECONFIG
             value: "false"
           ports:
-            - name: http
-              containerPort: 80
-              protocol: TCP
             - name: https
-              containerPort: 443
+              containerPort: 8443
               protocol: TCP
-          livenessProbe:
-            httpGet:
-              path: /
-              port: https
-          readinessProbe:
-            httpGet:
-              path: /
-              port: https
+          # livenessProbe:
+          #   httpGet:
+          #     path: /
+          #     port: https
+          # readinessProbe:
+          #   httpGet:
+          #     path: /
+          #     port: https
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+          volumeMounts:
+          - name: webhook-tls-certs
+            mountPath: /etc/webhook/certs/
+            readOnly: true
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
@@ -65,3 +66,7 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      volumes:
+      - name: webhook-tls-certs
+        secret: 
+          secretName: {{ .Release.Name }}-tls

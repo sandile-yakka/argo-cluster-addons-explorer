@@ -3,7 +3,7 @@ kind: MutatingWebhookConfiguration
 metadata: 
   name: {{ .Release.Name }}
 webhooks:
-- name: {{ .Release.Name }}.default.svc.cluster.local
+- name: {{ .Release.Name }}.{{ .Release.Namespace }}.svc.cluster.local
   admissionReviewVersions:
   - "v1beta1"
   sideEffects: "None"
@@ -15,10 +15,10 @@ webhooks:
     service:
       name: {{ .Release.Name }}
       namespace: default
-      path: "/addMemoryRequests"
-    caBundle: "${CA_PEM_B64}"
+      path: "/addresourcerequests"
+    caBundle: "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURFVENDQWZtZ0F3SUJBZ0lVQ245UEhVRk1ldEY0alVNenVDcmk0OXV1Tk4wd0RRWUpLb1pJaHZjTkFRRUwKQlFBd0dERVdNQlFHQTFVRUF3d05ZMngxYzNSbGNpNXNiMk5oYkRBZUZ3MHlNakF5TURReE5USXdNelJhRncwMApPVEEyTWpJeE5USXdNelJhTUJneEZqQVVCZ05WQkFNTURXTnNkWE4wWlhJdWJHOWpZV3d3Z2dFaU1BMEdDU3FHClNJYjNEUUVCQVFVQUE0SUJEd0F3Z2dFS0FvSUJBUURLclVISlMwV0EwTmRFUW94bDhGRnpjVXlTRG5tbzRSd2wKMU9LZ08zbVF1N2lXTEx4MlhsNjZGN2NNNmMrL3B5YjZ2ZkRQTVRjOGpseXVoSEI4a1ArNGpFYlFrZmt0WS8yVAp3YklzWU1qa3l6S0lzaVV5d3hiMW5MYUs5UTFsaVhZcFFPMzdMbzhrbWFNbDFwdUlZQmMxc2tHU0I5S0dUUExQCnhVenpiU0VJcW9pU3BJeUhRc0pibUlNV0IySGRKaCsyMmNuV1J5OExtNGMxbmRhMEtFSzVXVG9xY0Zva1lHbzIKQU9acHdPaURlbTkwN1pxQXBXYkpselk5WkM1TXNFbFpQbDRXaUFIdTFuMktYeGFZbjV4TzFVMm50OHQyYTdWNgpGTGJnaUxoTEd0SzFIazdCZlJxNDRkUVNsLzdaVHpyTDhKWkNmcVB3K1JUeVI0QmtKczd2QWdNQkFBR2pVekJSCk1CMEdBMVVkRGdRV0JCUzE5RTJldTdLdnkzSnlQQloxZ0kvYk1aZUxqakFmQmdOVkhTTUVHREFXZ0JTMTlFMmUKdTdLdnkzSnlQQloxZ0kvYk1aZUxqakFQQmdOVkhSTUJBZjhFQlRBREFRSC9NQTBHQ1NxR1NJYjNEUUVCQ3dVQQpBNElCQVFCWHBzaTk1Z3NTeFlZeUh1MlU4NXliUnJQZXlJS25vSytEUDI3bDdjdGRFN0txamVuRk1scFFEVHZIClRKdjlzSFE3b1llcWUrR2xxRkdaYzBmWHE4ZjdEM1c2ZVB5dHdUZ0E5MmZBTjUveFN1Y1hjZjZQcmUzN0RIbC8KRDlPWk5iVzYzeVBXV2dNVlRINDk0YTRTNWdtMVNTcVYxd2loanN1L0Z0TjhMV2JKU3NJQ0c3Ym81VTErZ3JwZwpxeXJWUk9PbU9PVjdaTkVqRy8rVTkwblF4cnpYeVZtaTNwc1hRbS9UaUd4K1dLT3hlb004dlhsdjhJQXVHU2prClVyNjNaTEE3SnExU3lCSWFsUFgzNURCbmtubERaN052dGR5am42bkx4bGFSeVA5eFlPbXdDeE44TUdSWXV1VDMKeXU3bEFHSHdtRkNtQzJldC9UbGVOdnhVRllZSgotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg=="
   rules:
   - operations: ["CREATE"]
-    apiGroups: [""]
+    apiGroups: ["apps"]
     apiVersions: ["v1"]
-    resources: ["pods"]
+    resources: ["deployments"]
