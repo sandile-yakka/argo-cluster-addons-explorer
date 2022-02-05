@@ -1,0 +1,18 @@
+{{ if .Values.spec.apps.mutatingWebhook.enabled }}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: mutating-webhook
+  namespace: argo-cd
+spec:
+  project: cluster-addons
+  syncPolicy:
+    automated: {}
+  destination:
+    namespace: {{ .Values.spec.apps.mutatingWebhook.destination.namespace }}
+    server: {{ .Values.spec.apps.mutatingWebhook.destination.server }}
+  source:
+    path: config/basic-mutating-webhook
+    repoURL: https://github.com/sandile-yakka/argo-cluster-addons-explorer
+    targetRevision: master
+{{ end }}

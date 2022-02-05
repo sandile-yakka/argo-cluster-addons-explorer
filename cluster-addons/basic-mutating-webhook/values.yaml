@@ -30,7 +30,8 @@ autoscaling:
   maxReplicas: 100
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
-
+webhook: # Mutating webhook configuration
+  namespace: default # The namespace whose deployments the webhook will intercepts
 nodeSelector: {}
 
 tolerations: []

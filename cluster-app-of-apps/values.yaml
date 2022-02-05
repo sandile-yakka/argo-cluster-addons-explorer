@@ -21,4 +21,9 @@ spec:
       destination:
         namespace: argo-cd
         server: https://kubernetes.default.svc
+    mutatingWebhook:
+      enabled: true
+      destination:  
+        namespace: default
+        server: https://kubernetes.default.svc
 
