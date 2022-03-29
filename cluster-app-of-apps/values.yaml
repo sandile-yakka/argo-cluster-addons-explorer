@@ -7,7 +7,7 @@ spec:
         namespace: kube-system
         server: https://kubernetes.default.svc
     ecrCredRenew:
-      enabled: false
+      enabled: true
       destination:
         namespace: argo-events
         server: https://kubernetes.default.svc
