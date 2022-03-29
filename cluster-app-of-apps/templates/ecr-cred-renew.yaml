@@ -6,11 +6,11 @@ metadata:
   namespace: argo-cd
 spec:
   project: cluster-addons
-  # ignoreDifferences: 
-  # - group: ""
-  #   kind: Secret
-  #   jsonPointers:
-  #     - /data
+  ignoreDifferences: 
+  - group: ""
+    kind: Secret
+    jsonPointers:
+      - /data
   syncPolicy:
     automated: {}
   destination:
