@@ -7,7 +7,7 @@ metadata:
 spec:
   project: cluster-addons
   ignoreDifferences: 
-  - groups: apps
+  - groups: v1
     kind: Secret
     jsonPointers:
     - /data
