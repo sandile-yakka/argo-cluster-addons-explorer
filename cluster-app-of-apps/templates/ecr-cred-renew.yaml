@@ -18,6 +18,6 @@ spec:
     server: {{ .Values.spec.apps.ecrCredRenew.destination.server }}
   source:
     path: cluster-addons/ecr-renew
-    repoURL: https://github.com/sandile-yakka/argo-cluster-addons
+    repoURL: https://github.com/sandile-yakka/argo-cluster-addons-explorer
     targetRevision: master
 {{ end }}
