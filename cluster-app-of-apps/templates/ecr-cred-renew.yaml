@@ -7,10 +7,10 @@ metadata:
 spec:
   project: cluster-addons
   ignoreDifferences: 
-  - groups: v1
+    - groups: v1
     kind: Secret
     jsonPointers:
-    - /data
+      - /data
   syncPolicy:
     automated: {}
   destination:
