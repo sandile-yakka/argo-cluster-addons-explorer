@@ -2,15 +2,15 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: ecr-cred-renew
+  name:   
   namespace: argo-cd
 spec:
   project: cluster-addons
   ignoreDifferences: 
-    - group: v1
-      kind: Secret
-      jsonPointers:
-        - /data
+  - group: ""
+    kind: Secret
+    jsonPointers:
+      - /data
   syncPolicy:
     automated: {}
   destination:
