@@ -26,4 +26,8 @@ spec:
       destination:  
         namespace: default
         server: https://kubernetes.default.svc
-
+    argo-workflows:
+      enabled: true
+      destination:  
+        namespace: argo-workflows
+        server: https://kubernetes.default.svc

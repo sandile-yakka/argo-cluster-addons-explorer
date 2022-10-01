@@ -1,0 +1,18 @@
+{{ if .Values.spec.apps.ecrCredRenew.enabled }}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ecr-cred-renew
+  namespace: argo-cd
+spec:
+  project: cluster-addons
+  syncPolicy:
+    automated: {}
+  destination:
+    namespace: {{ .Values.spec.apps.ecrCredRenew.destination.namespace }}
+    server: {{ .Values.spec.apps.ecrCredRenew.destination.server }}
+  source:
+    path: cluster-addons/argo-workflows
+    repoURL: https://github.com/sandile-yakka/argo-cluster-addons-explorer
+    targetRevision: master
+{{ end }}
