@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: ecr-cred-renew
+  name: argo-worfklows
   namespace: argo-cd
 spec:
   project: cluster-addons
